@@ -1,0 +1,32 @@
+## Allows user to input a value of a dice (d4, d6, d8, etc.) and how many you want to roll. Gives option to reroll. If no reroll is selected it resets ready for new value
+## input. Originally I had it so you were forced to choose one of the standard dice values but I found it had more utility if you could use any number for the value. 
+## This allows you to roll for things you couldn't with a normal dice set, such as randomizing a d365 if you wanted a random day of the year for example. 
+
+import random
+
+while True: 
+    try:
+        min = 1
+        max = int(input("Enter the highest value of dice to be rolled: "))
+    except:
+        print("Your input was invalid, program rolled a d20 by default")
+        min = 1
+        max = 20
+
+    again = True
+    number_of_dice = int(input("Enter number of dice to roll: "))
+
+    for i in range(number_of_dice - 1):
+        print(random.randint(min, max))
+
+    while again:
+        print(random.randint(min, max))
+
+        reroll = input("Roll again? (y/n): ")
+
+        if reroll.lower() == "y" or reroll.lower() == "yes":
+            for i in range(number_of_dice - 1):
+                print(random.randint(min, max))
+        else:
+            print("\nWhat dice would you like to roll next?")
+            break
